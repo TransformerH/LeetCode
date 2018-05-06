@@ -22,3 +22,26 @@ int countSubstrings(string s) {
 }
 
 // method 2: dp
+int countSubstrings(string s) {
+    vector<string> curSubstrings;
+    vector<string> lastSubstrings;
+    int len = (int)s.length();
+    
+    lastSubstrings.push_back(string(1, s[len - 1]));
+    int result = 1;
+    for(int i = len - 2; i >= 0; i--){
+        string n = string(1, s[i]);
+        result++;
+        curSubstrings.push_back(n);
+        for(auto it:lastSubstrings){
+            string r = n + it;
+            curSubstrings.push_back(r);
+            if(palindromic(r))
+                result++;
+        }
+        lastSubstrings = curSubstrings;
+        curSubstrings.clear();
+    }
+    
+    return result;
+}
