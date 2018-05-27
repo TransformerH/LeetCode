@@ -1,3 +1,4 @@
+// Using fast, slow pointers finds the length of the list
 ListNode* removeNthFromEnd(ListNode* head, int n) {
     ListNode *rehead = head;
     ListNode *quick = head;
